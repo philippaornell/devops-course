@@ -119,7 +119,7 @@ public void test0()  throws Throwable  {
 
 * Test has no obvious purpose
 
-    - Harder for human testers to understand and thus maintain [@shamshiri2018automatically]
+    - Harder for human testers to understand and maintain [@shamshiri2018automatically;@honfi2017classifying]
 
 # Summary and references
 
