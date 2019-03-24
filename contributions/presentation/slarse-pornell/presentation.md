@@ -1,40 +1,32 @@
-# Introduction
-
-## How to measure test suite awesomeness?
-
-* Code coverage
-
-* Fault detection rate
-
-    - Mutation testing
-
-* Is that enough?
-
-# Performance measures
+# What makes a good test suite?
 
 ## Code coverage
+
+* Purpose
+
+    - Check which parts of production code have been executed
 
 * Pros
 
     - Automated
 
+    - Fast
+
     - Percentages are nice
 
-    - Good at indicating what has not been tested
+    - Code not covered $\implies$ code not tested
 
 * Cons
 
-    - Poor at indicating what has been _tested_
+    - Code covered $\not \Rightarrow$ code tested
 
-    - False sense of security
+    - False sense of security?
 
 ## Mutation testing
 
-* Concept
-    
-    - Slightly change production code (mutate)
+* Purpose
 
-    - Check if test suite discovers mutation
+    - Check if tests observe incorrect states
 
 * Pros
 
@@ -44,45 +36,52 @@
 
 * Cons
 
-    - Traditional mutation testing takes a _long_ time
+    - Traditional mutation testing takes a _long_ time [@niedermayr2016will]
 
-    - Equivalent mutants (10-20%)
+    - Equivalent mutants (8-9% [@offutt1997automatically;@bybro2003mutation]) 
 
-## What performance measures do not say
+## Maintainability
 
-* Performance measures are exclusively focused on the _now_
+* Performance measures exclusively focused on _now_
 
-* Software is hardly ever _done_
+* Software maintenance costs typically exceed 50% of total development cost [@hunt2008software]
 
-    - Especially true for DevOps!
-    
+* Test maintenance can be more costly than production code maintenance [@labuschagne2017measuring;@alegroth2016maintenance]
 
+* Performance now $\not \Rightarrow$ performance tomorrow
 
-# Maintainability
+    - ABB test suite started at 90% coverage
 
-## Why important?
+    - Ten years later: 10% coverage, rarely even run [@robinson2011scaling]
 
-## How to measure?
+## A maintainable test case
 
-# Automated test generation and maintainability
+* DevOps is heavily focused around software as a living thing\newline\newline
+
+> "[...], a good test case should not only be sensitive to deviations from
+> the intended behavior, but should also be maintainable in its own right;
+> **it should be easy to understand so that it can be readily adapted to changes in
+> the rest of the code base as it evolves.**" [@shamshiri2018automatically]
+
+# Automated test generation
 
 ## Fibo.java
 
 ```java
 public class Fibo {
-    private long previous;
     private long current;
+    private long next;
 
     public Fibo() {
-        previous = 0;
-        current = 1;
+        current = 0;
+        next = 1;
     }
 
     public long next() {
-        long toReturn = previous;
-        previous = current;
-        current = toReturn + current;
-        return toReturn;
+        long previous = current;
+        current = next;
+        next = previous + current;
+        return previous;
     }
 }
 ```
@@ -107,36 +106,34 @@ public void test0()  throws Throwable  {
 3. Clear structure (e.g. AAA)?
 
 
-## No domain knowledge -> poor test
+## Not a very good test suite
+
+* Assumes current implementation is correct
+    
+    - To us, testing should be about contesting correctness
 
 * Test scores high on performance (full coverage, 71%
   mutation score)
 
-### Broken implementation (generates 0, 1, 2, 3, ...)
+    - But would pass a function generating 0, 1, 2...
 
-```java
-public class Fibo {
-    private long current;
+* Test has no obvious purpose
 
-    public Fibo() {
-        current = 0;
-    }
+    - Harder for human testers to understand and thus maintain [@shamshiri2018automatically]
 
-    public long next() {
-        int toReturn = current;
-        ++current;
-        return toReturn;
-    }
-}
-```
+# Summary and references
 
-## Summary
+## Takeaways
 
 * Performance is _hard_ to measure in a general way
 
 * High performance $\not \Rightarrow$ good test suite
 
-* Maintainability is equally important
+    - Maintainability is also important
+
+* AGTs do what they are designed to do well
+
+    - But maybe white-box performance criteria is insufficient
 
 
-## References
+## References {.allowframebreaks} 

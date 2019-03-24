@@ -1,11 +1,9 @@
 ---
-title: "What makes a good test suite?"
+title: 'Are automatically generated test suites "good"?'
 author:
 - Simon Larsén
 - Philippa Örnell
 date: \today
-highlight: tango
-theme: Madrid
 numbersections: true
 toc: true
 csl: ieee.csl
@@ -16,11 +14,13 @@ linkcolor: black
 urlcolor: black
 toccolor: black
 bibliography: ref.bib
+theme: Darmstadt
 header-includes:
 - \usepackage{graphicx}
 - \usepackage{amsfonts}
 - \usepackage{booktabs}
 - \usepackage{float}
 - \usepackage{multicol}
+- \usecolortheme{dolphin}
 ---
 
