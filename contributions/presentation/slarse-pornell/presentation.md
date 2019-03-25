@@ -63,7 +63,7 @@
 > **it should be easy to understand so that it can be readily adapted to changes in
 > the rest of the code base as it evolves.**" [@shamshiri2018automatically]
 
-# Automated test generation
+# Are automatically generated tests "good" tests?
 
 ## Fibo.java
 
@@ -133,7 +133,7 @@ public void test0()  throws Throwable  {
 
 * AGTs do what they are designed to do well
 
-    - But maybe white-box performance criteria is insufficient
+    - But the design is flawed
 
 
 ## References {.allowframebreaks} 
